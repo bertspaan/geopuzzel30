@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet Quick Start Guide Example</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+</head>
+<body>
+	<div id="map" style="width: 100%; height: 650px"></div>
+	<script src="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+	<script>
+		var map = new L.Map('map');
+
+		var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
+			cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+			cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttribution})
+
+		// Breedtegraad: 
+		
+		var enden = 52 / 4;
+		var kippen = 4;
+		// .
+		var cores = 8;
+		var maanden_eddo = 29; // 7-2-2010
+		var bike_route = 4417;
+		var palm = 6;
+		var kayamozhi = 5497;
+
+		var lat = parseFloat((enden * kippen).toString() + "." + (Math.ceil((cores * maanden_eddo * bike_route) / palm) * 2 + kayamozhi).toString());
+
+		// Lengtegraad:
+		
+		var rimke = 11;
+		var magnums = 6 //?;
+		// .0
+		var hadrian = 122;
+		var whiskey = 17; // ze zeiden dertien!!!
+		var ns = 24;
+		var fiets = 10; //?
+		var jasper = 92;
+
+		var lon = parseFloat((rimke - magnums).toString() + ".0" + (hadrian * whiskey * ns - fiets + jasper - 48014).toString());
+
+		// Lijntjes
+		
+		var lat_p1 = new L.LatLng(lat, 0),
+			lat_p2 = new L.LatLng(lat, 100),
+			lat_points = [lat_p1, lat_p2];
+		var lat_polyline = new L.Polyline(lat_points, {color: 'red'});
+
+		var lon_p1 = new L.LatLng(0, lon),
+			lon_p2 = new L.LatLng(80, lon),
+			lon_points = [lon_p1, lon_p2];
+		var lon_polyline = new L.Polyline(lon_points, {color: 'red'});
+
+		map.setView(new L.LatLng(lat, lon), 14).addLayer(cloudmade);
+		
+		console.log(lat, lon);
+			
+		map.addLayer(lat_polyline);
+		map.addLayer(lon_polyline);
+	</script>
+</body>
+</html>
